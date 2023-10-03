@@ -39,8 +39,36 @@ $ npx nx run theme:build
 $ npm login (create Organizations ama-ecosystem)
 
 # publish npm package
-$ cd dist/libs/theme
+$ cd dist
 $ npm publish --access=public
+```
+
+## Setup multiple points vite react libraray
+```bash
+# 1. create react library
+npx nx generate @nx/react:library --name=theme --bundler=vite --directory=libs/theme --projectNameAndRootFormat=as-provided --no-interactive --dry-run  
+
+# 2.edit tsconfig.lib.json
+Go to libs/theme/tsconfig.lib.json
+- "exclude": add "vite.config.ts"
+- "include": delete text "src"
+
+# 3. edit vite.config.ts
+Go to libs/theme/vite.config.ts
+- change fileName: 'index' to "[name]" in build/lib
+- change './src' to '.' in entryRoot
+- add input in rollupOptions:
+  input: {
+    index: 'libs/theme/src/index.ts',
+    piano: 'libs/theme/piano/index.ts',
+  }
+
+# 4. edit tsconfig.base.json
+"paths": {
+  "@ama-ecosystem/theme": ["libs/theme/src/index.ts"],
+  "@ama-ecosystem/theme/piano": ["libs/theme/piano/index.ts"]
+}
+
 ```
 
 ## Temp
