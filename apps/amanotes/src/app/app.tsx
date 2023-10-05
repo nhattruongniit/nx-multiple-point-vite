@@ -2,10 +2,12 @@
 
 import NxWelcome from './nx-welcome';
 
+import { Piano } from '@ama-ecosystem/theme/piano';
 
 export function App() {
   return (
     <div>
+      <Piano />
       <NxWelcome title="amanotes" />
     </div>
   );

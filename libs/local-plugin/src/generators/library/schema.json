@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "Library",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Library name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the library?",
+      "pattern": "(?:^@[a-zA-Z0-9-*~][a-zA-Z0-9-*._~]*\\/[a-zA-Z0-9-~][a-zA-Z0-9-._~]*|^[a-zA-Z][^:]*)$",
+      "x-priority": "important"
+    },
+    "style": {
+      "description": "The file extension to be used for style files.",
+      "type": "string",
+      "default": "css",
+      "alias": "s",
+      "x-prompt": {
+        "message": "Which stylesheet format would you like to use?",
+        "type": "list",
+        "items": [
+          { "value": "css", "label": "CSS" },
+          {
+            "value": "scss",
+            "label": "SASS(.scss)       [ http://sass-lang.com          ]"
+          },
+          {
+            "value": "less",
+            "label": "LESS              [ http://lesscss.org            ]"
+          },
+          {
+            "value": "styled-components",
+            "label": "styled-components [ https://styled-components.com ]"
+          },
+          {
+            "value": "@emotion/styled",
+            "label": "emotion           [ https://emotion.sh            ]"
+          },
+          {
+            "value": "styled-jsx",
+            "label": "styled-jsx        [ https://www.npmjs.com/package/styled-jsx ]"
+          },
+          {
+            "value": "none",
+            "label": "None"
+          },
+          {
+            "value": "styl",
+            "label": "Stylus(.styl)     [ http://stylus-lang.com        ] (DEPRECATED)"
+          }
+        ]
+      }
+    },
+    "linter": {
+      "description": "The tool to use for running lint checks.",
+      "type": "string",
+      "enum": ["eslint", "none"],
+      "default": "eslint"
+    },
+    "unitTestRunner": {
+      "type": "string",
+      "enum": ["jest", "vitest", "none"],
+      "description": "Test runner to use for unit tests.",
+      "x-prompt": "What unit test runner should be used?"
+    },
+    "inSourceTests": {
+      "type": "boolean",
+      "default": false,
+      "description": "When using Vitest, separate spec files will not be generated and instead will be included within the source files."
+    },
+    "importPath": {
+      "type": "string",
+      "description": "The library name used to import it, like `@myorg/my-awesome-lib`."
+    }
+  },
+  "required": ["name"]
+}

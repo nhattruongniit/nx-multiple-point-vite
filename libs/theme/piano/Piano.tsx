@@ -1,8 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export function Piano() {
-  return (
-    <div>Piano</div>
-  )
+  return <div className="flex">Piano</div>;
 }
-

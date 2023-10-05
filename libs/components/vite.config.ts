@@ -5,7 +5,7 @@ import * as path from 'path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 
 export default defineConfig({
-  cacheDir: '../../node_modules/.vite/theme',
+  cacheDir: '../../node_modules/.vite/components',
 
   plugins: [
     react(),
@@ -26,23 +26,21 @@ export default defineConfig({
   // See: https://vitejs.dev/guide/build.html#library-mode
   build: {
     entry: 'src/index.ts',
-    name: 'theme',
+    name: 'components',
     fileName: 'index',
     formats: ['es', 'cjs'],
     external: ['react', 'react-dom', 'react/jsx-runtime'],
     lib: {
       entry: 'src/index.ts',
-      name: 'theme',
-      // fileName: 'index',
+      name: 'components',
       fileName: '[name]',
       formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: ["'react'", "'react-dom'", "'react/jsx-runtime'"],
       input: {
-        index: 'libs/theme/src/index.ts',
-        piano: 'libs/theme/piano/index.ts',
-        harmonica: 'libs/theme/harmonica/index.ts',
+        index: 'libs/components/src/index.ts',
+        truong: 'libs/components/truong/index.ts',
       },
     },
   },
